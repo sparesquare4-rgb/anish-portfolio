@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #04040a;
+  --surface: #080810;
+  --card: #0e0e1a;
+  --border: rgba(255,255,255,0.06);
+  --accent: #00ffd5;
+  --accent2: #7b5ea7;
+  --gold: #f5c842;
+  --text: #eeeef8;
+  --muted: #5a5a72;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); }
+
+/* ── Shader hero: fade-in for title words ── */
+@keyframes fadeInGlitch {
+  0% { opacity: 0; transform: translateY(12px) skewX(-4deg); filter: blur(4px); }
+  60% { opacity: 1; transform: translateY(-2px) skewX(1deg); filter: blur(0); }
+  80% { transform: translateY(1px) skewX(0deg); }
+  100% { opacity: 1; transform: translateY(0) skewX(0deg); }
+}
+.fade-in {
+  animation: fadeInGlitch 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fadeInSubtitle {
+  from { opacity: 0; transform: translateY(10px); letter-spacing: 0.3em; }
+  to   { opacity: 1; transform: translateY(0);    letter-spacing: normal; }
+}
+.fade-in-subtitle {
+  animation: fadeInSubtitle 0.7s ease both;
+}
+
+/* ── Explore button ── */
+.explore-btn {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(238,238,248,0.5);
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  animation: fadeInSubtitle 0.8s ease forwards;
+  transition: color 0.2s;
+}
+.explore-btn:hover { color: var(--accent); }
+
+.explore-arrow {
+  display: flex;
+  animation: bounce 2s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* sections */
+.section-pad { padding: 100px 48px; }
+
+@media (max-width: 768px) {
+  .section-pad { padding: 80px 20px; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
